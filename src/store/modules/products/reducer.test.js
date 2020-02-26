@@ -1,7 +1,10 @@
 // Product module reducer tests
 
 import { INITIAL_STATE } from './reducer';
-import { GET_PRODUCTS } from './actions';
+import {
+  GET_PRODUCTS,
+  SET_PRODUCT_TYPES,
+} from './actions';
 import reducer from './reducer';
 
 describe('Products reducer', () => {
@@ -24,6 +27,19 @@ describe('Products reducer', () => {
       payload: { products }
     });
 
-    expect(newState).toEqual({ products });
+    expect(newState).toEqual({ products, productTypes: [] });
   });
+
+  // Test the SET_PRODUCT_TYPES action
+  it ('should correctly set unique product types in state', () => {
+    const productTypes = ['type1', 'type2'];
+
+    const state = reducer(undefined, {});
+    const newState = reducer(state, {
+      type: SET_PRODUCT_TYPES,
+      payload: { productTypes }
+    });
+
+    expect(newState.productTypes).toEqual(productTypes);
+  })
 });

@@ -24,11 +24,19 @@ const ProductGrid = props => {
 
 
   return (
-    <Grid container spacing={3} className={styles.productGrid}>
+    <Grid
+      container
+      spacing={3}
+      className={styles.productGrid}
+      data-testid="ProductGrid"
+    >
       {filteredProducts.map((product, index) => {
         return (
-          <Grid key={`product_${index}`} item xs={6} sm={4} md={3}>
-            <ProductCard {...product} />
+          <Grid
+            key={`product_${index}`}
+            item xs={6} sm={4} md={3}
+          >
+            <ProductCard {...product} data-testid="ProductGrid.ProductCard" />
           </Grid>
         );
       })}

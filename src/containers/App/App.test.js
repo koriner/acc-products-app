@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import App from './index';
-import { testStore } from 'test-utils';
+import { testStore } from 'tests/utils';
 
 /**
  * Generic setup method to render an instance of the component,

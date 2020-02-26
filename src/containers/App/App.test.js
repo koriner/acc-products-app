@@ -1,13 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import App from './index';
+import { testStore } from 'test-utils';
 
 /**
  * Generic setup method to render an instance of the component,
- * which can be used by multiple tests.
+ * which can be used by multiple tests. This also implements
+ * the example testStore to mimic redux capabilities.
  */
-const setup = () => {
-  const component = shallow(<App />);
+const setup = (initialState = {}) => {
+  const store = testStore(initialState);
+  const component = shallow(<App store={store} />)
+    .childAt(0)
+    .dive();
   return component;
 }
 

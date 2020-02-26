@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -8,9 +9,17 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import styles from './styles.module.scss';
 
-export default function NavBar(props) {
-  const handleChangeFilter = () => {};
-  const value = 'default';
+const NavBar = (props) => {
+  const { productTypes, filter, onChangeFilter } = props;
+
+  /**
+   * Change handler for filter select dropdown
+   *
+   * @param {Event} event
+   */
+  const handleChangeFilter = event => {
+    onChangeFilter(event.target.value);
+  };
 
   return (
     <div className={styles.navBar}>
@@ -22,14 +31,18 @@ export default function NavBar(props) {
           <FormControl variant="filled" className={styles.formControl}>
             <InputLabel id="select-filter-label">Filter:</InputLabel>
             <Select
+              className={styles.select}
               labelId="select-filter-label"
               id="select-filter-label"
-              value={''}
+              value={filter}
               onChange={handleChangeFilter}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value="all">All</MenuItem>
+              {
+                productTypes.map((type, idx) => (
+                  <MenuItem key={idx} value={type}>{type}</MenuItem>
+                ))
+              }
             </Select>
           </FormControl>
         </Toolbar>
@@ -37,3 +50,15 @@ export default function NavBar(props) {
     </div>
   );
 }
+
+NavBar.propTypes = {
+  productTypes: PropTypes.array.isRequired,
+  filter: PropTypes.string,
+  onChangeFilter: PropTypes.func.isRequired,
+};
+
+NavBar.defaultProps = {
+  filter: 'all'
+};
+
+export default NavBar;

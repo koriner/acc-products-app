@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import { connect } from 'react-redux';
 import { getProducts } from 'store/modules/products/actions';
@@ -11,7 +11,10 @@ import ProductGrid from 'components/ProductGrid';
  * loading the required product data and connecting to redux
  */
 function App(props) {
-  const { products } = props;
+  const { products, productTypes } = props;
+
+  // Local state to track filter option from nav
+  const [filter, setFilter] = useState('all');
 
   // On first render, dispatch an action to load products
   useEffect(() => {
@@ -20,10 +23,15 @@ function App(props) {
 
   return (
     <div className={styles.app} data-testid="App">
-      <NavBar />
+      <NavBar
+        productTypes={productTypes}
+        onChangeFilter={setFilter}
+        filter={filter}
+      />
       <Container maxWidth="lg">
         <ProductGrid
           products={products}
+          filter={filter}
         />
       </Container>
     </div>
@@ -32,7 +40,8 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    products: state.products.products
+    products: state.products.products,
+    productTypes: state.products.productTypes,
   };
 }
 

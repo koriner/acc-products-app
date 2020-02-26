@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import styles from './styles.module.scss';
@@ -10,11 +10,22 @@ import ProductCard from 'components/ProductCard';
  * @param {Object} props
  */
 const ProductGrid = props => {
-  const { products } = props;
+  const { products, filter } = props;
+
+  // Memoize the function to filter products to avoid
+  // re-running when not required
+  const filteredProducts = useMemo(() => {
+    let filtered = products;
+    if (filter !== 'all') {
+      filtered = products.filter(p => p.type === filter);
+    }
+    return filtered;
+  }, [products, filter]);
+
 
   return (
     <Grid container maxWidth="sm" spacing={3} className={styles.productGrid}>
-      {products.map((product, index) => {
+      {filteredProducts.map((product, index) => {
         return (
           <Grid item xs={6} sm={4} md={3}>
             <ProductCard {...product} />
@@ -26,7 +37,12 @@ const ProductGrid = props => {
 };
 
 ProductGrid.propTypes = {
-  products: PropTypes.array.isRequired
+  products: PropTypes.array.isRequired,
+  filter: PropTypes.string
+};
+
+ProductGrid.defaultProps = {
+  filter: 'all'
 };
 
 export default ProductGrid;

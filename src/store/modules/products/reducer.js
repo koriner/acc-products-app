@@ -6,11 +6,12 @@
 import produce from 'immer';
 
 // Import possible action types
-import { GET_PRODUCTS } from './actions';
+import { GET_PRODUCTS, SET_PRODUCT_TYPES } from './actions';
 
 // Initial default state for reducer
 export const INITIAL_STATE = {
-  products: []
+  products: [],
+  productTypes: []
 };
 
 // Main reducer method
@@ -20,6 +21,10 @@ export default (state = INITIAL_STATE, { type, payload }) => {
 
       case GET_PRODUCTS:
         draft.products = payload.products;
+        break;
+
+      case SET_PRODUCT_TYPES:
+        draft.productTypes = payload.productTypes;
         break;
 
       default:

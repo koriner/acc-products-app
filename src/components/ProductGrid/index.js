@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import styles from './styles.module.scss';
+import ProductCard from 'components/ProductCard';
 
 /**
  * ProductGrid component to render a MUI grid for all products
@@ -16,7 +17,7 @@ const ProductGrid = props => {
       {products.map((product, index) => {
         return (
           <Grid item xs={6} sm={4} md={3}>
-            {product.productName}
+            <ProductCard {...product} />
           </Grid>
         );
       })}

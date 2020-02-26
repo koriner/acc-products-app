@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from './App';
+import App from './index';
 
 /**
  * Generic setup method to render an instance of the component,

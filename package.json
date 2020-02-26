@@ -30,5 +30,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.4",
+    "husky": "^4.2.3",
+    "jest-enzyme": "^7.1.2",
+    "react-test-renderer": "^16.12.0"
   }
 }

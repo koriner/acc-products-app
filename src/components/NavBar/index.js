@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -29,7 +28,7 @@ const NavBar = props => {
             Products!
           </Typography>
           <div className={styles.rhs}>
-            <Typography className={styles.rhsLabel} variant="p">Filter by:</Typography>
+            <Typography className={styles.rhsLabel} variant="h5">Filter by:</Typography>
             <FormControl className={styles.formControl}>
               <Select
                 displayEmpty

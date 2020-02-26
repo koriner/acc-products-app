@@ -9,7 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import styles from './styles.module.scss';
 
-const NavBar = (props) => {
+const NavBar = props => {
   const { productTypes, filter, onChangeFilter } = props;
 
   /**
@@ -25,36 +25,39 @@ const NavBar = (props) => {
     <div className={styles.navBar}>
       <AppBar position="static">
         <Toolbar className={styles.toolbar}>
-          <Typography variant="h3" className={styles.title}>
+          <Typography variant="h5" className={styles.title}>
             Products!
           </Typography>
-          <FormControl variant="filled" className={styles.formControl}>
-            <InputLabel id="select-filter-label">Filter:</InputLabel>
-            <Select
-              className={styles.select}
-              labelId="select-filter-label"
-              id="select-filter-label"
-              value={filter}
-              onChange={handleChangeFilter}
-            >
-              <MenuItem value="all">All</MenuItem>
-              {
-                productTypes.map((type, idx) => (
-                  <MenuItem key={idx} value={type}>{type}</MenuItem>
-                ))
-              }
-            </Select>
-          </FormControl>
+          <div className={styles.rhs}>
+            <Typography className={styles.rhsLabel} variant="p">Filter by:</Typography>
+            <FormControl className={styles.formControl}>
+              <Select
+                displayEmpty
+                className={styles.select}
+                labelId="select-filter-label"
+                id="select-filter-label"
+                value={filter}
+                onChange={handleChangeFilter}
+              >
+                <MenuItem value="all">All</MenuItem>
+                {productTypes.map((type, idx) => (
+                  <MenuItem key={idx} value={type}>
+                    {type}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
 
 NavBar.propTypes = {
   productTypes: PropTypes.array.isRequired,
   filter: PropTypes.string,
-  onChangeFilter: PropTypes.func.isRequired,
+  onChangeFilter: PropTypes.func.isRequired
 };
 
 NavBar.defaultProps = {

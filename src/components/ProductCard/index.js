@@ -31,16 +31,17 @@ const ProductCard = (props) => {
   } = props;
 
   return (
-    <Card className={styles.productCard}>
+    <Card className={styles.productCard} data-testid="ProductCard">
       <CardActionArea>
         <CardMedia
+          data-testid="ProductCard.Image"
           component="img"
           className={styles.media}
           image={getImage(productImage)}
           title={productName}
         />
         <CardContent>
-          <div className={styles.productName}>
+          <div className={styles.productName} data-testid="ProductCard.Name">
             <Typography gutterBottom>
               {productName} &mdash; <strong>{price}</strong>
             </Typography>
@@ -49,11 +50,14 @@ const ProductCard = (props) => {
       </CardActionArea>
       {
         isSale && (
-          <Badge style={{
-            position: 'absolute',
-            left: 30,
-            top: 19,
-          }} color="secondary" badgeContent={<strong>SALE</strong>} />
+          <Badge
+            data-testid="ProductCard.Badge"
+            style={{
+              position: 'absolute',
+              left: 30,
+              top: 19,
+            }}
+            color="secondary" badgeContent={<strong>SALE</strong>} />
         )
       }
     </Card>

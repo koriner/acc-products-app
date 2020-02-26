@@ -20,7 +20,7 @@ export const GET_PRODUCTS = 'products/GET_PRODUCTS';
  */
 export const getProducts = () => {
   return async dispatch => {
-    await delay(2000);
+    await delay(1000);
     dispatch({
       type: GET_PRODUCTS,
       payload: {

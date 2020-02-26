@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import styles from './styles.module.scss';
 import { connect } from 'react-redux';
 import { getProducts } from 'store/modules/products/actions';
+import Container from '@material-ui/core/Container';
+import NavBar from 'components/NavBar';
+import ProductGrid from 'components/ProductGrid';
 
 /**
  * The main app component container is responsible for
@@ -17,14 +20,12 @@ function App(props) {
 
   return (
     <div className={styles.app} data-testid="App">
-      <h1 data-testid="AppTitle">App Title</h1>
-      <div>
-        {
-          products.map(p => (
-            <p>{p.productName}</p>
-          ))
-        }
-      </div>
+      <NavBar />
+      <Container maxWidth="lg">
+        <ProductGrid
+          products={products}
+        />
+      </Container>
     </div>
   );
 }
